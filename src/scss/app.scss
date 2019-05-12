@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+// Example of project-name.scss
+// Define variables to override default ones
+$primary-color: #2e5bec;
+$primary-gray: #c7a8a8;
+$primary-light: #fff;
+
+body {
+    margin-left: 10px;
+    margin-right: 10px;
+    min-width: 300px;
+    background: #2e5bec;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+.bg-gray {
+    background: $primary-gray;
+}
+
+.bg-light {
+    background: $primary-light;
+}
