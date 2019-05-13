@@ -5,18 +5,14 @@
         </div>
         <div class="panel-body">
             <card></card>
-            <textarea rows="2" placeholder="Add card"></textarea>
+            <add-card></add-card>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            message: 'Hello, Vue'
-        }
-    }
+
 }
 </script>
 
@@ -42,14 +38,6 @@ export default {
 
     .panel-body {
         margin: 8px;
-    }
-
-    textarea {
-        resize: none;
-        font-size: 18px;
-        padding: 14px;
-        border: 1px solid black;
-        width: 92%;
     }
 </style>
 

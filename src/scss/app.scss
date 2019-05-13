@@ -22,3 +22,10 @@ body {
 .bg-light {
     background: $primary-light;
 }
+
+.btn-gray {
+    font-size: 18px;
+    border: 1px solid gray;
+    padding: 5px;
+    border-bottom: 4px solid gray;
+}

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card bg-light" v-for="card in cards" v-bind:key="card.id">
+        <div class="card bg-light" v-for="(card, index) in cards" :key="index" :item="card">
             <div class="card-title">
                 <h5>{{ card.item }}</h5>
             </div>
@@ -13,13 +13,16 @@ export default {
     data() {
         return {
             cards: [
-                {item: 'Wash Laundry', id:1},
-                {item: 'Wash Laundry', id:2},
-                {item: 'Wash Laundry', id:3},
-                {item: 'Wash Laundry', id:4},
-                {item: 'Wash Laundry', id:5}
+                {item: 'Wash Laundry'},
+                {item: 'Wash Laundry'},
+                {item: 'Wash Laundry'},
+                {item: 'Wash Laundry'},
+                {item: 'Wash Laundry'}
             ]
         }
+    },
+    created() {
+        this.$events.listen('addItem', item => this.cards.push({item: item}));
     }
 }
 </script>
@@ -28,8 +31,9 @@ export default {
     .card {
         width: 100%;
         height: 50px;
-        border: 1px solid;
+        border: 1px solid #9a8484;
         margin-bottom: 5px;
+        border-bottom: 4px solid #9a8484;
         .card-title {
             margin: 15px;
         }
