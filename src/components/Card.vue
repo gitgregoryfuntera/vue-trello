@@ -1,6 +1,10 @@
 <template>
     <div>
-        <div class="card bg-light" v-for="(card, index) in cards" :key="index" :item="card">
+        <div class="card bg-light" 
+             v-for="(card, index) in cards" 
+             :key="index" 
+             :item="card"
+             @click="showModal">
             <div class="card-title">
                 <h5>{{ card.item }}</h5>
             </div>
@@ -23,6 +27,11 @@ export default {
     },
     created() {
         this.$events.listen('addItem', item => this.cards.push({item: item}));
+    },
+    methods: {
+        showModal() {
+            alert('show modal');
+        }
     }
 }
 </script>
@@ -41,5 +50,9 @@ export default {
             margin: 0;
             padding: 0;
         }
+    }
+    .card:hover {
+        cursor: pointer;
+        background: #d2cfcf;
     }
 </style>
