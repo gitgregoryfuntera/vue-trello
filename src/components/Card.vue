@@ -1,5 +1,6 @@
 <template>
     <div>
+        <card-modal v-if="showModal" @close="shoModal = false"></card-modal>
         <div class="card bg-light" 
              v-for="(card, index) in cards" 
              :key="index" 
@@ -9,7 +10,6 @@
                 <h5>{{ card.item }}</h5>
             </div>
         </div>
-        <card-modal v-if="showModal" @close="shoModal = false"></card-modal>
     </div>
 </template>
 
@@ -29,11 +29,11 @@ export default {
     },
     created() {
         this.$events.listen('addItem', item => this.cards.push({item: item}));
+        this.$events.listen('showModal', isShow => this.showModal = isShow);
     },
     methods: {
         onShowModal() {
             this.showModal = true;
-            this.$events.$emit('showModal', this.showModal);
         }
     }
 }

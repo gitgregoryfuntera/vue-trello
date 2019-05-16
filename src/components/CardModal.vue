@@ -1,7 +1,9 @@
 <template>
     <div class="modal">
-        <div class="modal-header">
+        <div class="modal-content">
             Modal Here
+        </div>
+        <div class="modal-btn">
             <button @click="onCloseModal">Close</button>
         </div>
     </div>
@@ -14,7 +16,7 @@ export default {
     },
     methods: {
         onCloseModal() {
-            this.$events.$emit('showModal');
+            this.$events.$emit('showModal', false);
         }
     }
 }
@@ -22,13 +24,14 @@ export default {
 
 <style lang="scss" scoped>
     .modal {
-        position: absolute;
+        position: fixed;
         z-index: 1;
+        height: 100%;
         top: 0;
-        width: 90%;
-        background: red;
-        height: 75%;
-        margin-top: 50px;
+        left: 0;
+        width: 100%;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
     }
 </style>
 
