@@ -4,11 +4,12 @@
              v-for="(card, index) in cards" 
              :key="index" 
              :item="card"
-             @click="showModal">
+             @click="onShowModal">
             <div class="card-title">
                 <h5>{{ card.item }}</h5>
             </div>
         </div>
+        <card-modal v-if="showModal" @close="shoModal = false"></card-modal>
     </div>
 </template>
 
@@ -22,15 +23,17 @@ export default {
                 {item: 'Wash Laundry'},
                 {item: 'Wash Laundry'},
                 {item: 'Wash Laundry'}
-            ]
+            ],
+            showModal: false
         }
     },
     created() {
         this.$events.listen('addItem', item => this.cards.push({item: item}));
     },
     methods: {
-        showModal() {
-            alert('show modal');
+        onShowModal() {
+            this.showModal = true;
+            this.$events.$emit('showModal', this.showModal);
         }
     }
 }
