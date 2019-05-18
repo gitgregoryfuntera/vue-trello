@@ -1,7 +1,8 @@
 <template>
      <div class="add-card">
          <form @submit.prevent="onAdd">
-            <textarea 
+            <textarea
+                class="textarea-input" 
                 rows="2" 
                 placeholder="Add card" 
                 v-model="item" 
@@ -31,7 +32,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    textarea {
+    .textarea-input {
         resize: none;
         font-size: 18px;
         padding: 14px;

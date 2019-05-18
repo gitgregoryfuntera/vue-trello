@@ -11,7 +11,7 @@ body {
     margin-left: 10px;
     margin-right: 10px;
     min-width: 300px;
-    background: #2e5bec;
+    background: $primary-color;
     font-family: "Nunito Sans", sans-serif;
 }
 
@@ -25,7 +25,15 @@ body {
 
 .btn-gray {
     font-size: 18px;
-    border: 1px solid gray;
+    border: 1px solid $primary-gray;
     padding: 5px;
-    border-bottom: 4px solid gray;
+    border-bottom: 4px solid $primary-gray;
+}
+
+.textarea-input {
+    resize: none;
+    font-size: 18px;
+    padding: 14px;
+    border: 1px solid #9a8484;
+    width: 92%;
 }
