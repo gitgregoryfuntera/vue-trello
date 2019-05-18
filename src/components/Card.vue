@@ -1,11 +1,14 @@
 <template>
     <div>
-        <card-modal v-if="showModal" @close="shoModal = false"></card-modal>
+        <card-modal :itemDetails="item" 
+            :taskIndex="index" 
+            v-if="showModal" 
+            @close="shoModal = false"></card-modal>
         <div class="card bg-light" 
              v-for="(card, index) in cards" 
              :key="index" 
              :item="card"
-             @click="onShowModal">
+             @click="onShowModal(card,index)">
             <div class="card-title">
                 <h5>{{ card.item }}</h5>
             </div>
@@ -15,25 +18,32 @@
 
 <script>
 export default {
+    props: {tasks: Array},
     data() {
         return {
-            cards: [
-                {item: 'Wash Laundry'},
-                {item: 'Wash Laundry'},
-                {item: 'Wash Laundry'},
-                {item: 'Wash Laundry'},
-                {item: 'Wash Laundry'}
-            ],
-            showModal: false
+            cards: this.tasks,
+            showModal: false,
+            item: {},
+            index: 0,
         }
     },
     created() {
-        this.$events.listen('addItem', item => this.cards.push({item: item}));
+        this.$events.listen('addItem', item => this.cards.push({
+            item: item, 
+            description:'',
+            checklist: []
+        }));
         this.$events.listen('showModal', isShow => this.showModal = isShow);
     },
+    beforeDestroy() {
+        this.$events.$off('addItem');
+        this.$events.$off('showModal');
+    },
     methods: {
-        onShowModal() {
+        onShowModal(item, index) {
             this.showModal = true;
+            this.item = item;
+            this.index = index;
         }
     }
 }

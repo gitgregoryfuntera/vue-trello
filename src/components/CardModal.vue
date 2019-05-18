@@ -2,7 +2,7 @@
     <div class="modal">
         <div class="modal-content bg-light">
             <div class="modal-header">
-                <input class="modal-input" type="text" placeholder="Task">
+                <input class="modal-input" type="text" placeholder="Task" v-model="task.item">
             </div>
             <div class="modal-body">
                 <h5 class="modal-subtext">Descripiton</h5>
@@ -10,31 +10,17 @@
                     <textarea 
                         class="textarea-input"
                         rows="2" 
-                        placeholder="Description"></textarea>
+                        placeholder="Description"
+                        v-model="task.description"></textarea>
                 </div>
                 <h5 class="modal-subtext">Checklist</h5>
-                <input class="modal-body-input" type="text" placeholder="Item">
-                <button class="btn-gray">Add Item</button>
+                <card-modal-input></card-modal-input>
                 <ul>
-                    <li>
+                    <li v-for="(checklist,index) in task.checklist" :key="index">
                         <div class="item">
-                            <input type="checkbox">
-                            <span>Item</span>
-                            <i class="material-icons">clear</i>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item">
-                            <input type="checkbox">
-                            <span>Item</span>
-                            <i class="material-icons">clear</i>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item">
-                            <input type="checkbox">
-                            <span>Item</span>
-                            <i class="material-icons">clear</i>
+                            <input type="checkbox" v-model="checklist.done">
+                            <span>{{ checklist.item }}</span>
+                            <i class="material-icons" @click="onRemoveChecklist(index)">clear</i>
                         </div>
                     </li>
                 </ul>
@@ -48,12 +34,30 @@
 
 <script>
 export default {
+    props: {itemDetails: Object},
     created() {
-        // this.$events.listen('showModal', modal => (console.log(modal)));
+        this.$events.listen('addChecklist', item => {
+            this.task.checklist.push({
+                item: item,
+                done: false
+            });
+        });
+    },
+    beforeDestroy() {
+        this.$events.$off('addChecklist');
+    },
+    data() {
+        return {
+            task: this.itemDetails,
+        }
     },
     methods: {
         onCloseModal() {
             this.$events.$emit('showModal', false);
+        },
+        onRemoveChecklist(index) {
+            let templist = this.itemDetails.checklist;
+            this.itemDetails.checklist = templist.filter((value, valIndex) => valIndex !== index);
         }
     }
 }
@@ -139,6 +143,10 @@ export default {
                     position: relative;
                     top: 4px;
                 }
+
+                i:hover {
+                    cursor: pointer;
+                } 
             }
         }
     }

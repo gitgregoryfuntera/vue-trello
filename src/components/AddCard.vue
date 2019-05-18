@@ -24,20 +24,14 @@ export default {
                 alert('Please enter a valid value!')
             } else {
                 this.$events.$emit('addItem', this.item);
-                this.item = '';
             }
+            this.item = '';
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-    .textarea-input {
-        resize: none;
-        font-size: 18px;
-        padding: 14px;
-        border: 1px solid #9a8484;
-        width: 92%;
-    }
+
 </style>
 

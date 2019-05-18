@@ -4,15 +4,23 @@
             <h2>To Do <span class="btn-more"><i class="material-icons">more_horiz</i></span></h2>
         </div>
         <div class="panel-body">
-            <card></card>
+            <card :tasks="tasks"></card>
             <add-card></add-card>
         </div>
     </div>
 </template>
 
 <script>
+import Tasks from '../mocks/tasks.mock';
 export default {
-
+    created() {
+        //
+    },
+    data() {
+        return {
+            tasks: Tasks,
+        }
+    }
 }
 </script>
 
