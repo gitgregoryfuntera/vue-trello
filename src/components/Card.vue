@@ -18,25 +18,27 @@
 
 <script>
 export default {
-    props: {tasks: Array},
+    props: {tasks: Array, cardIndex: Number},
     data() {
         return {
             cards: this.tasks,
             showModal: false,
             item: {},
-            index: 0,
         }
     },
     created() {
-        this.$events.listen('addItem', item => this.cards.push({
-            item: item, 
-            description:'',
-            checklist: []
-        }));
+        this.$events.listen('addItem-' + this.cardIndex, item => {
+                this.cards.push({
+                    item: item, 
+                    description:'',
+                    checklist: []
+                });
+            }
+        );
         this.$events.listen('showModal', isShow => this.showModal = isShow);
     },
     beforeDestroy() {
-        this.$events.$off('addItem');
+        this.$events.$off('addItem-' + this.cardIndex);
         this.$events.$off('showModal');
     },
     methods: {

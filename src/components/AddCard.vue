@@ -13,9 +13,10 @@
 </template>
 <script>
 export default {
+    props: {cardIndex: Number},
     data() {
         return {
-            item: ''
+            item: '',
         }
     },
     methods: {
@@ -23,9 +24,9 @@ export default {
             if (this.item == '') { 
                 alert('Please enter a valid value!')
             } else {
-                this.$events.$emit('addItem', this.item);
+                this.$events.$emit('addItem-' + this.cardIndex, this.item);
+                this.item = '';
             }
-            this.item = '';
         }
     }
 }
