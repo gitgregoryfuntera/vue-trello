@@ -4,19 +4,22 @@
             :taskIndex="index" 
             v-if="showModal" 
             @close="shoModal = false"></card-modal>
-        <div class="card bg-light" 
-             v-for="(card, index) in cards" 
-             :key="index" 
-             :item="card"
-             @click="onShowModal(card,index)">
-            <div class="card-title">
-                <h5>{{ card.item }}</h5>
+        <draggable :list="cards" :group="{name: 'tasks'}">
+            <div class="card bg-light" 
+                v-for="(card, index) in cards" 
+                :key="index" 
+                :item="card"
+                @click="onShowModal(card,index)">
+                <div class="card-title">
+                    <h5>{{ card.item }}</h5>
+                </div>
             </div>
-        </div>
+        </draggable>
     </div>
 </template>
 
 <script>
+import draggable from 'vuedraggable';
 export default {
     props: {tasks: Array, cardIndex: Number},
     data() {

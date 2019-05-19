@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="grid-container">
+        <draggable :list="tasks" @start="start" class="grid-container">
             <div v-for="(task,index) of tasks" :key="index" class="grid-item">
                 <div class="panel bg-gray">
                     <div class="panel-header">
@@ -14,18 +14,16 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </draggable>
     </div>
 </template>
 
 <script>
+import draggable from 'vuedraggable';
 import Tasks from '../mocks/tasks.mock';
 export default {
     created() {
         //
-    },
-    beforeDestroy() {
-        this.$events.$off('addItem');
     },
     data() {
         return {

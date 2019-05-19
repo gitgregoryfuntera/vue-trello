@@ -2,6 +2,7 @@
     <div class="modal">
         <div class="modal-content bg-light">
             <div class="modal-header">
+                <h5 class="modal-title">Title</h5>
                 <input class="modal-input" type="text" placeholder="Task" v-model="task.item">
             </div>
             <div class="modal-body">
@@ -95,6 +96,11 @@ export default {
         border: 1px solid;
         margin: 10px 0px 0px 0px;
         padding: 5px 0px 4px 7px;
+    }
+
+    .modal-title {
+        margin: 0px;
+        font-size: 20px;
     }
 
     .modal-subtext {
