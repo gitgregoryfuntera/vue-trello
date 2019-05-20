@@ -1,7 +1,7 @@
 <template>
     <div>
-        <draggable :list="tasks" @start="start" class="grid-container">
-            <div v-for="(task,index) of tasks" :key="index" class="grid-item">
+        <transition-group tag="div" class="grid-container" >
+            <div v-for="(task,index) of tasks" :key="index" class="grid-item" swapItem>
                 <div class="panel bg-gray">
                     <div class="panel-header">
                         <h2>{{ task.title }}<span class="btn-more">
@@ -14,22 +14,30 @@
                     </div>
                 </div>
             </div>
-        </draggable>
+        </transition-group>
     </div>
 </template>
 
 <script>
-import draggable from 'vuedraggable';
+import { Swappable } from '@shopify/draggable';
+
 import Tasks from '../mocks/tasks.mock';
 export default {
-    created() {
-        //
+    mounted() {
+        const swappable = new Swappable(
+	        document.querySelectorAll('[swappable]'), {
+	            draggable: '[swapItem]',
+	            delay: 0,
+        });
+        swappable.on('drag:start', () => {
+	        console.log('drag:start')
+        });
     },
     data() {
         return {
             tasks: Tasks,
         }
-    }
+    },
 }
 </script>
 
