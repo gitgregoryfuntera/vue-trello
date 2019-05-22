@@ -1,7 +1,13 @@
 <template>
     <div>
-        <transition-group tag="div" class="grid-container" >
-            <div v-for="(task,index) of tasks" :key="index" class="grid-item" swapItem>
+        <div class="header">
+            <div class="title">
+                <h1>Vue-Trello</h1>
+                <button class="btn-gray">Add Task</button>
+            </div>
+        </div>
+        <draggable v-model="tasks" class="grid-container">
+            <div v-for="(task,index) of tasks" :key="index" class="grid-item">
                 <div class="panel bg-gray">
                     <div class="panel-header">
                         <h2>{{ task.title }}<span class="btn-more">
@@ -14,24 +20,15 @@
                     </div>
                 </div>
             </div>
-        </transition-group>
+        </draggable>
     </div>
 </template>
 
 <script>
-import { Swappable } from '@shopify/draggable';
-
+import draggable from 'vuedraggable';
 import Tasks from '../mocks/tasks.mock';
 export default {
     mounted() {
-        const swappable = new Swappable(
-	        document.querySelectorAll('[swappable]'), {
-	            draggable: '[swapItem]',
-	            delay: 0,
-        });
-        swappable.on('drag:start', () => {
-	        console.log('drag:start')
-        });
     },
     data() {
         return {
