@@ -2,8 +2,10 @@
     <div>
         <div class="header">
             <div class="title">
-                <h1>Vue-Trello</h1>
-                <button class="btn-gray">Add Task</button>
+                <input type="text" class="header-input" v-model="task" @keyup.enter="onAddTask">
+            </div>
+            <div class="header-btn">
+                <button class="btn-gray" @click="onAddTask">Add Task</button>
             </div>
         </div>
         <draggable v-model="tasks" class="grid-container">
@@ -33,12 +35,36 @@ export default {
     data() {
         return {
             tasks: Tasks,
+            task: '',
         }
     },
+    methods: {
+        onAddTask() {
+            if (this.task) {
+                this.tasks.push({title: this.task, tasks: []});
+                this.task = '';
+            } else {
+                alert('Please enter a valid task');
+            }
+
+        }
+    }
 }
 </script>
 
 <style lang="scss" scoped>
+    .header {
+        display: flex;
+        .header-input {
+            margin: 10px;
+            font-size: 18px;
+            padding: 3px;
+        }
+
+        .header-btn {
+            margin-top: 8px;
+        }
+    }
     .panel {
         border: 1px solid;
         max-width: 350px;
