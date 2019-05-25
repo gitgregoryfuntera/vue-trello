@@ -71,7 +71,7 @@ export default {
     .card {
         width: 100%;
         height: 50px;
-        border: 1px solid #9a8484;
+        border: 1px solid #c7a8a8;
         margin-bottom: 5px;
         border-bottom: 4px solid #9a8484;
         .card-title {

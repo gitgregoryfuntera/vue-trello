@@ -7,11 +7,30 @@ $primary-color: #2e5bec;
 $primary-gray: #c7a8a8;
 $primary-light: #fff;
 
+$btn-bg-gray: #e2c2c2;
+$btn-border-gray: #b19696;
+$btn-btm-border-gray: #b59a9a;
+
+$textarea-border-gray: #9a8484;
+$textarea-btm-border-gray: #9a8484;
+
+$input-btm-border-gray: #9a8484;
+$input-border-gray: #9a8484;
+
+
+
+$panel-border-gray: #b49a9a;
+$panel-border-btm-gray: #7f6f6f;
+
+.material-icons.add-icon {
+    font-size: 18px;
+}
+
 body {
     margin-left: 10px;
     margin-right: 10px;
     min-width: 300px;
-    background: $primary-color;
+    // background: $primary-color;
     font-family: "Nunito Sans", sans-serif;
 }
 
@@ -25,17 +44,47 @@ body {
 
 .btn-gray {
     font-size: 18px;
-    border: 1px solid $primary-gray;
+    border: 1px solid $btn-border-gray;
     padding: 5px;
-    border-bottom: 4px solid $primary-gray;
+    border-bottom: 6px solid $btn-btm-border-gray;
+    background: $btn-bg-gray;
+}
+
+.btn-danger {
+    font-size: 18px;
+    border: 1px solid #e13530;
+    padding: 5px;
+    border-bottom: 6px solid #e01b1b;
+    background: #f34e4e;
+    color: #fff;
+}
+
+.btn-primary {
+    font-size: 18px;
+    border: 1px solid #746bdc;
+    padding: 5px;
+    border-bottom: 6px solid #746bdc;
+    background: #589eec;
+    color: #fff;
+}
+
+.input-borders {
+    border-bottom: 5px solid $input-btm-border-gray !important;
+    border-color: $input-border-gray !important;
+}
+
+.panel-borders {
+    border: 1px solid $panel-border-gray !important;
+    border-bottom: 5px solid $panel-border-btm-gray !important;
 }
 
 .textarea-input {
     resize: none;
     font-size: 18px;
     padding: 14px;
-    border: 1px solid #9a8484;
+    border: 1px solid $textarea-border-gray;
     width: 90%;
+    border-bottom: 5px solid $textarea-btm-border-gray;
 }
 
 .modal {

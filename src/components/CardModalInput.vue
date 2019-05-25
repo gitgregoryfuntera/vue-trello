@@ -1,10 +1,10 @@
 <template>
     <div>
-        <input class="modal-body-input" 
+        <input class="modal-body-input input-borders" 
             type="text" placeholder="Item" 
             v-model="item"
             @keyup.enter="onAddItem">
-        <button class="btn-gray" @click="onAddItem">Add Item</button>
+        <button class="btn-primary" @click="onAddItem">Add Item</button>
     </div>
 </template>
 

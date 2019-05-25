@@ -7,7 +7,7 @@
                 placeholder="Add card" 
                 v-model="item" 
                 @keyup.enter="onAdd"></textarea>
-            <button class="btn-gray" type="submit">Add Card</button>
+            <button class="btn-primary" type="submit">Add Card</button>
          </form>
     </div>
 </template>

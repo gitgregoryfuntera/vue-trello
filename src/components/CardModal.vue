@@ -8,7 +8,7 @@
                         <i class="material-icons">delete</i>
                     </span>
                 </h5>
-                <input class="modal-input" type="text" placeholder="Task" v-model="task.item">
+                <input class="modal-input input-borders" type="text" placeholder="Task" v-model="task.item">
             </div>
             <div class="modal-body">
                 <h5 class="modal-subtext">Descripiton</h5>
@@ -25,14 +25,14 @@
                     <li v-for="(checklist,index) in task.checklist" :key="index">
                         <div class="item">
                             <input type="checkbox" v-model="checklist.done">
-                            <span>{{ checklist.item }}</span>
+                            <span v-bind:class="{ strike: checklist.done }">{{ checklist.item }}</span>
                             <i class="material-icons" @click="onRemoveChecklist(index)">clear</i>
                         </div>
                     </li>
                 </ul>
             </div>
             <div class="modal-btn">
-                <button class="btn-gray" @click="onCloseModal">Close</button>
+                <button class="btn-danger" @click="onCloseModal">Close</button>
             </div>
         </div>
     </div>
@@ -73,6 +73,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @keyframes strike {
+        0%   { width : 0; }
+        100% { width: 100%; }
+    }
+    
+    .strike {
+        position: relative;
+    }
+
+    .strike::after {
+        content: ' ';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: black;
+        animation-name: strike;
+        animation-duration: 0.5s;
+        animation-timing-function: linear;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards; 
+    }
 
     .modal-content {
         width: 340px;
