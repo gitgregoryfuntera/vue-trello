@@ -2,6 +2,7 @@
     <div>
         <card-modal :itemDetails="item" 
             :taskIndex="index" 
+            :cardIndex="cardIndex"
             v-if="showModal" 
             @close="shoModal = false"></card-modal>
         <draggable :list="cards" :group="{name: 'tasks'}">
@@ -38,17 +39,29 @@ export default {
                 });
             }
         );
-        this.$events.listen('showModal', isShow => this.showModal = isShow);
+        
+        this.$events.listen('showModal', isShow => {
+            this.showModal = false;
+        });
+
+        this.$events.listen('delTask-' + this.cardIndex, index => {
+            this.onRemoveTask(index);
+            this.showModal = false;
+        });
     },
     beforeDestroy() {
         this.$events.$off('addItem-' + this.cardIndex);
-        this.$events.$off('showModal');
     },
     methods: {
         onShowModal(item, index) {
             this.showModal = true;
             this.item = item;
             this.index = index;
+        },
+        onRemoveTask(index) {
+            let templist = this.cards;
+            this.cards = templist.filter((value, valIndex) =>  valIndex !== index);
+            this.showModal = false;
         }
     }
 }

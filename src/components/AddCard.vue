@@ -21,7 +21,7 @@ export default {
     },
     methods: {
         onAdd() {
-            if (this.item == '') { 
+            if (this.item.length === 0) { 
                 alert('Please enter a valid value!')
             } else {
                 this.$events.$emit('addItem-' + this.cardIndex, this.item);

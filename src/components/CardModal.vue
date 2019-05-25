@@ -2,7 +2,12 @@
     <div class="modal">
         <div class="modal-content bg-light">
             <div class="modal-header">
-                <h5 class="modal-title">Title</h5>
+                <h5 class="modal-title">
+                    Title
+                    <span class="btn-del" @click="onDeleteTask">
+                        <i class="material-icons">delete</i>
+                    </span>
+                </h5>
                 <input class="modal-input" type="text" placeholder="Task" v-model="task.item">
             </div>
             <div class="modal-body">
@@ -35,7 +40,7 @@
 
 <script>
 export default {
-    props: {itemDetails: Object},
+    props: {itemDetails: Object, taskIndex: Number, cardIndex: Number},
     created() {
         this.$events.listen('addChecklist', item => {
             this.task.checklist.push({
@@ -53,6 +58,9 @@ export default {
         }
     },
     methods: {
+        onDeleteTask() {
+            this.$events.$emit('delTask-' + this.cardIndex, this.taskIndex);
+        },
         onCloseModal() {
             this.$events.$emit('showModal', false);
         },
@@ -65,17 +73,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-    .modal {
-        position: fixed;
-        z-index: 1;
-        height: 100%;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: rgb(0,0,0);
-        background-color: rgba(0,0,0,0.8);
-    }
 
     .modal-content {
         width: 340px;
@@ -101,6 +98,11 @@ export default {
     .modal-title {
         margin: 0px;
         font-size: 20px;
+    }
+
+    .btn-del {
+        float: right;
+        cursor: pointer;
     }
 
     .modal-subtext {
